@@ -10,7 +10,8 @@
         "name": "John Doe",
         "avatar": "https://placekitten.com/100/100"
       },
-      "chatHistory": "chatHistoryKey1"
+      "chatHistory": "chatHistoryKey1",
+      "lastMessage": "Not much, just working."
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
         "name": "Alice Smith",
         "avatar": "https://placekitten.com/100/100"
       },
-      "chatHistory": "chatHistoryKey2"
+      "chatHistory": "chatHistoryKey2",
+      "lastMessage": "Sure, sounds good!"
     },
     {
       "id": 3,
@@ -26,12 +28,17 @@
         "name": "Bob Johnson",
         "avatar": "https://placekitten.com/100/100"
       },
-      "chatHistory": "chatHistoryKey3"
+      "chatHistory": "chatHistoryKey3",
+      "lastMessage": "I'm good, thanks!"
     }
   ],
   "chatHistory": [
     {
       "id": "chatHistoryKey1",
+      "metadata": {
+        "name": "John Doe",
+        "avatar": "https://placekitten.com/100/100"
+      },
       "data": [
         {
           "message": "Hello there!",
@@ -61,6 +68,10 @@
     },
     {
       "id": "chatHistoryKey2",
+      "metadata": {
+        "name": "Alice Smith",
+        "avatar": "https://placekitten.com/100/100"
+      },
       "data": [
         {
           "message": "Hey Alice!",
@@ -90,6 +101,10 @@
     },
     {
       "id": "chatHistoryKey3",
+      "metadata": {
+        "name": "Bob Johnson",
+        "avatar": "https://placekitten.com/100/100"
+      },
       "data": [
         {
           "message": "Hey Bob!",

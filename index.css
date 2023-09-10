@@ -1,14 +1,23 @@
+/* Reset default styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Set the base font size to 10px for easy rem calculations */
 html {
   font-size: 62.5%;
 }
+
+/* Style the body with a gradient background */
 body {
   font-size: 1.6rem;
+  background: rgb(236, 236, 236);
+  background: linear-gradient(200deg, rgba(236, 236, 236, 1) 0%, rgba(217, 217, 217, 1) 50%, rgba(236, 236, 236, 1) 100%);
 }
+
+/* Create a grid layout for the main structure */
 .layout-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -17,6 +26,7 @@ body {
   min-height: 100vh;
 }
 
+/* Style the inbox sidebar */
 .aside-inbox {
   grid-area: inbox;
   display: grid;
@@ -25,18 +35,19 @@ body {
   height: 100vh;
 }
 
+/* Style the inbox sidebar header */
 .aside-inbox-header {
   grid-area: header;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  padding: 1rem 1.6rem;
   background-color: #202c33;
-  padding: 1rem 1.6rem 1rem 1.6rem;
   position: sticky;
-  position: -webkit-sticky;
   top: 0;
 }
+
+/* Style the avatar in the inbox sidebar header */
 .aside-inbox-header-avatar {
   width: 4rem;
   height: 4rem;
@@ -55,16 +66,26 @@ body {
   font-weight: 700;
   margin-left: 1rem;
 }
+
+/* Style the chat content in the inbox */
 .aside-inbox-chats {
   grid-area: content;
   overflow-y: auto;
   background-color: #111b21;
 }
+
+/* Style individual chat cards */
 .chat-card {
   display: flex;
-  padding: 1rem 1.6rem 1rem 1.6rem;
+  padding: 1rem 1.6rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
+.chat-card:hover {
+  background-color: #333;
+}
+
+/* Style the avatar in chat cards */
 .chat-card-avatar {
   width: 6rem;
   height: 6rem;
@@ -82,14 +103,18 @@ body {
   flex-direction: column;
   justify-content: center;
   margin-left: 1rem;
+  width: 100%;
   overflow-x: hidden;
   border-top: 1px solid rgba(134, 150, 160, 0.15);
 }
+
+/* Style chat card name and message */
 .chat-card-content-name {
   color: #fff;
   font-size: 1.6rem;
   font-weight: 700;
 }
+
 .chat-card-content-message {
   color: #aebac1;
   font-size: 1.4rem;
@@ -99,30 +124,35 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* Style the main chat area */
 .main-chat {
   display: grid;
-  border: 0.1px solid #E9EDE3;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "header" "content" "footer";
   grid-area: chat;
   height: 100vh;
   overflow-y: hidden;
 }
-.main-chat-header{
-    grid-area: header;
-    display: flex;
-    align-items: center;
-    background-color: #202c33;
-    padding: 1rem 1.6rem 1rem 1.6rem;
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
+
+/* Style the main chat header */
+.main-chat-header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  background-color: #202c33;
+  padding: 1rem 1.6rem;
+  position: sticky;
+  top: 0;
+  transition: background-color 0.3s ease;
 }
-.main-chat-header-avatar{
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    background-color: #ccc;
+
+/* Style the avatar in the main chat header */
+.main-chat-header-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #ccc;
 }
 .main-chat-header-avatar-img{
     width: 100%;
@@ -131,63 +161,108 @@ body {
     object-fit: cover;
 }
 .main-chat-header-content-name{
-    color: #aebac1;
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin-left: 1rem;
+  color: #aebac1;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-left: 1rem;
 }
-.main-chat-messages{
-    overflow-y: auto;
+
+/* Style the chat messages container */
+.main-chat-messages {
+  grid-area: content;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
-.main-chat-footer{
-    grid-area: footer;
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    background-color: #202C33;
-    padding: 2rem 1.6rem 2rem 1.6rem;
-    position: sticky;
-    position: -webkit-sticky;
-    bottom: 0;
+
+/* Style individual chat messages */
+.main-chat-messages-message-content {
+  padding: 1rem 2rem;
+  background-color: #005c4b;
+  border-radius: 7.5px;
+  color: #e9edef;
 }
-.main-chat-footer-input{
-    width: 100%;
-    height: 4rem;
-    border-radius: 2rem;
-    background-color: #111B21;
-    border: none;
-    padding: 0 1.6rem 0 1.6rem;
-    color: #fff;
-    font-size: 1.6rem;
-    font-weight: 400;
+
+.main-chat-messages-message {
+  padding: 2rem 4rem;
 }
-.main-chat-footer-input::placeholder{
-    color: #AEBAC1;
-    font-size: 1.6rem;
-    font-weight: 400;
+
+.main-chat-messages-message-self {
+  display: flex;
+  flex-direction: row;
 }
-.main-chat-footer-input:focus{
-    border: 1px solid #1DA1F2;
+
+.main-chat-messages-message-other {
+  display: flex;
+  flex-direction: row-reverse;
 }
-.main-chat-footer-send-button{
-    width: 4rem;
-    height: 4rem;
-    border: none;
-    border-radius: 50%;
-    background-color: #005C4B;
-    outline: none;
-    cursor: pointer;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #fff;
+
+/* Style the chat footer */
+.main-chat-footer {
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  background-color: #202c33;
+  padding: 2rem 1.6rem;
+  position: sticky;
+  bottom: 0;
 }
-@media screen and (max-width: 768px){
-    .layout-grid{
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: "inbox chat";
-    }
-    
+
+/* Style the chat input field */
+.main-chat-footer-input {
+  width: 100%;
+  height: 4rem;
+  border-radius: 2rem;
+  background-color: #111b21;
+  border: none;
+  padding: 0 1.6rem;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
+
+/* Style the chat input field placeholder */
+.main-chat-footer-input::placeholder {
+  color: #aebac1;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+/* Style the chat input field when focused */
+.main-chat-footer-input:focus {
+  border: 1px solid #1da1f2;
+}
+
+/* Style the send button */
+.main-chat-footer-send-button {
+  width: 4rem;
+  height: 4rem;
+  border: none;
+  border-radius: 50%;
+  background-color: #005c4b;
+  outline: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.main-chat-footer-send-button:hover {
+  background-color: #007a63;
+  transform: scale(1.1);
+}
+
+/* Add responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+  .layout-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "inbox chat";
+  }
+}
+
 @media (max-width: 420px) {
   .layout-grid {
     display: block;

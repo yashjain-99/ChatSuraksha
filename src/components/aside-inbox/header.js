@@ -1,16 +1,10 @@
-import useApiCall from "../../hooks/useApiCall";
-import { useState } from "react";
+import useFetch from "../../hooks/useFetch";
+
 const Header = () => {
-  const [data, setData] = useState(null);
-  useApiCall(
-    {
-      endpoint: "/metadata",
-    },
-    setData
-  );
+  const { data, loading } = useFetch({ endpoint: "/metadata" });
   return (
     <>
-      {data ? (
+      {!loading ? (
         <header className="aside-inbox-header">
           <div className="aside-inbox-header-avatar">
             <img
