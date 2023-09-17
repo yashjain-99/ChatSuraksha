@@ -1,7 +1,9 @@
+import Form from "../components/form";
+import { useState } from "react";
 const Login = () => {
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="login-container">
+      <Form isFromRegister={false} />
     </div>
   );
 };

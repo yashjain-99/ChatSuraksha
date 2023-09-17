@@ -1,7 +1,8 @@
+import Form from "../components/form";
 const Signup = () => {
   return (
-    <div>
-      <h1>Signup</h1>
+    <div className="login-container">
+      <Form isFromRegister={true} />
     </div>
   );
 };

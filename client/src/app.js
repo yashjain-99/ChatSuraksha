@@ -1,6 +1,6 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createRoot } from "react-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Dashboard from "./routes/dashboard";
 import Login from "./routes/login";
 import Signup from "./routes/signup";
@@ -8,22 +8,33 @@ import Error from "./routes/error";
 
 const rootElement = createRoot(document.getElementById("root"));
 
-const appRouter = createBrowserRouter([
-  {
-    path: "/",
-    element: <Dashboard />,
-    errorElement: <Error />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-    errorElement: <Error />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
-    errorElement: <Error />,
-  },
-]);
+const ProtectedRoutes = ({ children }) => {
+  // Check if the user is logged in by checking if the token is present in local storage
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
 
-rootElement.render(<RouterProvider router={appRouter} />);
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoutes>
+              <Dashboard />
+            </ProtectedRoutes>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+rootElement.render(<App />);
