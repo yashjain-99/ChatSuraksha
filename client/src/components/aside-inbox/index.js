@@ -2,8 +2,6 @@ import Header from "./header";
 import ChatCard from "./chat-card";
 
 const AsideInbox = ({ setSelectedConversation, metadata, inbox }) => {
-  console.log(metadata);
-  console.log(inbox);
   return (
     <div className="aside-inbox">
       <Header metadata={metadata} />

@@ -1,5 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
+const cors = require("cors");
 const jwt = require("jsonwebtoken");
 require("./connection");
 const Users = require("./models/users");
@@ -8,6 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -30,7 +32,7 @@ app.post("/api/register", async (req, res) => {
       profilePicture,
     });
     user.save();
-    res.status(201).send("User registered successfully");
+    res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -56,9 +58,9 @@ app.post("/api/login", async (req, res) => {
       async (err, token) => {
         if (err) throw err;
         await Users.updateOne({ _id: user._id }, { $set: { token } });
+        res.status(200).json({ ...payload, token });
       }
     );
-    res.status(200).json({ user });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

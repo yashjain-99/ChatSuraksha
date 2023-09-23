@@ -1,5 +1,4 @@
 const Header = ({ metadata }) => {
-  console.log(metadata);
   return (
     <header className="main-chat-header">
       {metadata ? (
