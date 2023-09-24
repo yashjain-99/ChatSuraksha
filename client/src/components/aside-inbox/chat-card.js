@@ -1,5 +1,6 @@
 const ChatCard = ({
-  metadata: { name, avatar },
+  name,
+  avatar,
   lastMessage,
   chatHistory,
   setSelectedConversation,

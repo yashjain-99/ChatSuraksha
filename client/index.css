@@ -190,12 +190,12 @@ body {
 
 .main-chat-messages-message-self {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
 
 .main-chat-messages-message-other {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 /* Style the chat footer */

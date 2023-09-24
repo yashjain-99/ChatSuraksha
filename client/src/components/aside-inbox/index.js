@@ -1,20 +1,26 @@
 import Header from "./header";
 import ChatCard from "./chat-card";
 
-const AsideInbox = ({ setSelectedConversation, metadata, inbox }) => {
+const AsideInbox = ({
+  setSelectedConversation,
+  inbox,
+  conversedWith,
+  metadata,
+}) => {
   return (
     <div className="aside-inbox">
       <Header metadata={metadata} />
       <div className="aside-inbox-chats">
-        {inbox.map((chat) => {
+        {conversedWith.map((conversationId) => {
           return (
             <ChatCard
-              key={chat.id}
-              metadata={chat.metadata}
-              lastMessage={chat.lastMessage}
-              chatHistory={chat.chatHistory}
+              key={conversationId}
+              name={inbox[conversationId].fullName}
+              avatar={inbox[conversationId].avatar}
+              lastMessage={inbox[conversationId].lastMessage}
+              chatHistory={inbox[conversationId].conversationHistoryId}
               setSelectedConversation={setSelectedConversation}
-              id={chat.id}
+              id={conversationId}
             />
           );
         })}

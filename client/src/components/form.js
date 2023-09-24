@@ -41,6 +41,7 @@ const Form = ({ isFromRegister = false }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
+      localStorage.setItem("metadata", JSON.stringify(metadata));
       navigate("/");
     }
   }, [isAuthenticated, navigate]);

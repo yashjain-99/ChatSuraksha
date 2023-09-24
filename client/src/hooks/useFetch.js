@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 const useFetch = ({ endpoint, id }) => {
   const [data, setdata] = useState(null);
   const [loading, setloading] = useState(true);
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "http://localhost:3000/api";
   const url = `${baseUrl}${endpoint}${id ? `/${id}` : ""}`;
-
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -34,6 +33,19 @@ export const useInitialSetup = () => {
   }, [metadataLoading, inboxLoading]);
 
   return { metadata, inbox, allLoaded };
+};
+
+export const getAllConversations = (userId, setConversations, setLoading) => {
+  const { data: conversations, loading } = useFetch({
+    endpoint: "/conversations",
+    id: userId,
+  });
+  useEffect(() => {
+    if (!loading) {
+      setConversations(conversations);
+      setLoading(false);
+    }
+  }, [conversations, loading]);
 };
 
 export default useFetch;

@@ -1,22 +1,32 @@
 import Footer from "./footer";
 import Header from "./header";
-import useFetch from "../../hooks/useFetch";
 import Conversations from "./conversations";
 
-const MainChat = ({ selectedConversation }) => {
+const MainChat = ({
+  selectedConversation,
+  conversationHistory,
+  userId,
+  socket,
+  setConversations,
+}) => {
   if (selectedConversation === null) return null;
-  const { data, loading } = useFetch({
-    endpoint: "/chatHistory",
-    id: selectedConversation,
-  });
-  if (loading) return null;
+  const { fullName, avatar, data } = conversationHistory;
+  const metadata = {
+    name: fullName,
+    avatar,
+  };
   return (
     <div className="main-chat">
-      <Header metadata={data.metadata} />
+      <Header metadata={metadata} />
       <main className="main-chat-messages">
-        <Conversations conversations={data.data} />
+        <Conversations conversations={data} socket={socket} />
       </main>
-      <Footer />
+      <Footer
+        selectedConversation={selectedConversation}
+        userId={userId}
+        socket={socket}
+        setConversations={setConversations}
+      />
     </div>
   );
 };
