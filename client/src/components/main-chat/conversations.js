@@ -1,4 +1,6 @@
 const Conversations = ({ conversations, socket }) => {
+  if (conversations.length === 0) return null;
+  if (conversations[0].message === "") return null;
   return (
     <>
       {conversations.map((conversation, index) => (

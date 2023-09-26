@@ -3,11 +3,8 @@ const useCreateInbox = (conversationsWithUserDetails) => {
   const conversationHistory = {};
   const conversedWith = [];
   conversationsWithUserDetails.forEach((element) => {
-    console.log(element.text);
     if (inbox[element.otherUserId]) {
-      console.log(element.date);
       if (element.date > inbox[element.otherUserId].lastMessageTime) {
-        console.log("here");
         inbox[element.otherUserId].lastMessage = element.text;
         inbox[element.otherUserId].lastMessageTime = element.date;
         inbox[element.otherUserId].lastMessageSelf =

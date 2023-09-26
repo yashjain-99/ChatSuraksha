@@ -30,8 +30,8 @@ body {
 .aside-inbox {
   grid-area: inbox;
   display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-areas: "header" "content";
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas: "header" "search" "content";
   height: 100vh;
 }
 
@@ -66,7 +66,35 @@ body {
   font-weight: 700;
   margin-left: 1rem;
 }
-
+.aside-inbox-search-container{
+  grid-area: search;
+  background-color: #202c33;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.6rem;
+}
+.aside-inbox-search-input{
+  width: 100%;
+  border-radius: 2rem;
+  background-color: #111b21;
+  border: none;
+  padding: 1rem 1.6rem;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.aside-inbox-search-results{
+  background-color: #111b21;
+  border: none;
+  border-radius: 2rem;
+  width: 100%;
+  max-height: 20rem;
+  margin-top: 1rem;
+  padding: 1rem 1.6rem;
+  overflow-y: auto;
+}
 /* Style the chat content in the inbox */
 .aside-inbox-chats {
   grid-area: content;

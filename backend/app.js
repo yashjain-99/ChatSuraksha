@@ -169,6 +169,27 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
+// search user
+app.get("/api/users/search/:searchTerm", async (req, res) => {
+  const { searchTerm } = req.params;
+  try {
+    const users = await Users.find({
+      email: { $regex: searchTerm, $options: "i" },
+    });
+    const usersToSend = users.map((user) => {
+      return {
+        email: user.email,
+        fullName: user.fullName,
+        id: user._id,
+        profilePicture: user.profilePicture,
+      };
+    });
+    res.status(200).json({ users: usersToSend });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log("Server listening on port 3000");
 });

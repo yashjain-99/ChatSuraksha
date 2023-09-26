@@ -61,6 +61,7 @@ const Dashboard = () => {
         inbox={inbox}
         conversedWith={conversedWith}
         metadata={metadata}
+        setConversations={setConversations}
       />
       <MainChat
         selectedConversation={selectedConversation}
