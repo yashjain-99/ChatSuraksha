@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-
+import mongoose from "mongoose";
 const conversationSchema = new mongoose.Schema({
   reciepientId: {
     type: String,
@@ -24,4 +23,4 @@ const conversationSchema = new mongoose.Schema({
 
 const Conversations = mongoose.model("Conversation", conversationSchema);
 
-module.exports = Conversations;
+export default Conversations;
