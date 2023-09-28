@@ -24,23 +24,25 @@ const useAuth = (
           "Content-Type": "application/json",
         },
       })
-        .then((res) => res.json())
-        .then((resData) => {
-          if (!resData.error) {
-            if (!isFromRegister) localStorage.setItem("token", resData.token);
-            setData(resData);
-            setError(null); // Clear any previous error.
-          } else {
-            setError(resData.error); // Set the error message.
+        .then(async (res) => {
+          if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.error);
           }
+          return res.json();
+        })
+        .then((resData) => {
+          if (!isFromRegister) localStorage.setItem("token", resData.token);
+          setData(resData);
+          setError(null); // Clear any previous error.
           setLoading(false); // Set loading back to false.
         })
         .catch((error) => {
-          setError("An error occurred."); // Handle network errors.
+          setError(error.message || "An error occurred.");
           setLoading(false); // Set loading back to false.
         });
     }
-  }, [email, password]); // Only run when email or password changes.
+  }, [email, password, firstName, lastName, profilePicture, isFromRegister]);
 
   return { data, loading, error };
 };

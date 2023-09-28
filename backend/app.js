@@ -4,6 +4,7 @@ import socketIO from "./socket.js";
 import userRoutes from "./routes/user.js";
 import conversationRoutes from "./routes/conversation.js";
 import authRoutes from "./routes/auth.js";
+import { errorHandler } from "./middlewares/errorHandler.js"; // Import your errorHandler middleware here
 import "./connection.js";
 
 const app = express();
@@ -21,6 +22,9 @@ socketIO(socketServerPort);
 app.use("/api/users", userRoutes);
 app.use("/api/conversations", conversationRoutes);
 app.use("/api/auth", authRoutes);
+
+// Use the errorHandler middleware at the end
+app.use(errorHandler);
 
 // Start the server
 const server = app.listen(PORT, () => {
