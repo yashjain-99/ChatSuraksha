@@ -1,7 +1,7 @@
 {
-  "name": "whatsapp",
+  "name": "chat-suraksha",
   "version": "1.0.0",
-  "description": "UI of whatsapp web UI.",
+  "description": "chat app using MERN stack and socket.io",
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
