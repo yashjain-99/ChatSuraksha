@@ -1,8 +1,7 @@
 import { Server as socketServer } from "socket.io";
 
-export default function (socketServerPort) {
-  console.log("Socket server working on port", socketServerPort);
-  const io = new socketServer(socketServerPort, {
+export default function (server) {
+  const io = new socketServer(server, {
     cors: {
       origin: "http://localhost:1234",
     },

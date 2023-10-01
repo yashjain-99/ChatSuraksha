@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getAllConversations } from "../hooks/useFetch";
 import useCreateInbox from "../hooks/useCreateInbox";
 import { io } from "socket.io-client";
+import isFromMobile from "../hooks/useIsFromMobile";
 
 const Dashboard = () => {
   const metadata = JSON.parse(localStorage.getItem("metadata"));
@@ -14,7 +15,7 @@ const Dashboard = () => {
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [socket, setSocket] = useState(null);
   useEffect(() => {
-    const newSocket = io("http://localhost:3001", {
+    const newSocket = io("http://localhost:3000", {
       query: { userId, fullName: metadata.fullName },
     });
     setSocket(newSocket);
@@ -55,7 +56,10 @@ const Dashboard = () => {
     conversations.conversationsWithUserDetails
   );
   return (
-    <div className="layout-grid">
+    <div
+      className="layout-grid"
+      style={isFromMobile() ? { display: "block" } : {}}
+    >
       <AsideInbox
         setSelectedConversation={setSelectedConversation}
         inbox={inbox}

@@ -1,6 +1,7 @@
 import Footer from "./footer";
 import Header from "./header";
 import Conversations from "./conversations";
+import { useEffect } from "react";
 
 const MainChat = ({
   selectedConversation,
@@ -15,10 +16,14 @@ const MainChat = ({
     name: fullName,
     avatar,
   };
+  useEffect(() => {
+    var objDiv = document.getElementById("main-chat-messages");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  });
   return (
     <div className="main-chat">
       <Header metadata={metadata} />
-      <main className="main-chat-messages">
+      <main className="main-chat-messages" id="main-chat-messages">
         <Conversations conversations={data} socket={socket} />
       </main>
       <Footer

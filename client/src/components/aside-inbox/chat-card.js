@@ -1,3 +1,4 @@
+import isFromMobile from "../../hooks/useIsFromMobile";
 const ChatCard = ({
   name,
   avatar,
@@ -33,6 +34,14 @@ const ChatCard = ({
               ],
             };
           });
+        }
+        if (isFromMobile()) {
+          document.querySelector(".aside-inbox").style.display = "none";
+          try {
+            document
+              .querySelector(".main-chat")
+              .style.removeProperty("display");
+          } catch (error) {}
         }
       }}
       key={id}
