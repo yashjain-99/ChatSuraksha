@@ -1,0 +1,6 @@
+[submodule "ChatSuraksha-API"]
+	path = ChatSuraksha-API
+	url = git@github.com:yashjain-99/ChatSuraksha-API.git
+[submodule "ChatSuraksha-client"]
+	path = ChatSuraksha-client
+	url = git@github.com:yashjain-99/ChatSuraksha-client.git
